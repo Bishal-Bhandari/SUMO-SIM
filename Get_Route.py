@@ -1,4 +1,4 @@
-from sumolib import checkBinary, net
+from sumolib import net
 
 # network file
 net_file = "bamberg.net.xml"
@@ -7,10 +7,17 @@ network = net.readNet(net_file)
 # the edges for route
 route_edges = ["edge1", "edge2", "edge3", "edge4"]
 
+# Initialize total length
+total_length = 0
+
 # details of the selected route
+# Process the route edges
+print("Route Details:")
 for edge_id in route_edges:
     edge = network.getEdge(edge_id)
-    print(f"Edge: {edge_id}, Length: {edge.getLength()}")
+    edge_length = edge.getLength()
+    total_length += edge_length
+    print(f"Edge: {edge_id}, Length: {edge_length:.2f} meters")
 
 # Save route to file
 with open("selected_routes.rou.xml", "w") as f:
