@@ -4,7 +4,7 @@ from sumolib import net
 net_file = "bamberg.net.xml"
 network = net.readNet(net_file)
 
-# the edges for route
+# The edges for route
 route_edges = ["edge1", "edge2", "edge3", "edge4"]
 
 # Total length
