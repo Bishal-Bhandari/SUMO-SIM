@@ -19,6 +19,9 @@ for edge_id in route_edges:
     total_length += edge_length
     print(f"Edge: {edge_id}, Length: {edge_length:.2f} meters")
 
+# Print total route length
+print(f"\nTotal Route Length: {total_length:.2f} meters")
+
 # Save route to file
 with open("selected_routes.rou.xml", "w") as f:
     f.write('<routes>\n')
