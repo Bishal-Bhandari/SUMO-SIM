@@ -9,10 +9,21 @@ start_edge = "38033459"
 end_edge = "-199523015"
 
 # Find connected route
-route_edges = network.getShortestPath(network.getEdge(start_edge), network.getEdge(end_edge))
+try:
+    route_edges, _ = network.getShortestPath(network.getEdge(start_edge), network.getEdge(end_edge))
+    edge_ids = [edge.getID() for edge in route_edges]
+    print("Complete Route:", " -> ".join(edge_ids))
+except Exception as e:
+    print(f"Error finding route: {e}")
+    exit()
 
-# Extract edge IDs
-edge_ids = [edge.getID() for edge in route_edges[0]]
+# Save the route as a .rou.xml file
+output_file = "calculated_routes.rou.xml"
+with open(output_file, "w") as f:
+    f.write('<routes>\n')
+    f.write('<vType id="bus" accel="1.0" decel="4.0" length="12" maxSpeed="20" color="1,0,0"/>\n')
+    f.write(f'<route id="calculatedRoute" edges="{" ".join(edge_ids)}"/>\n')
+    f.write('<vehicle id="bus_1" type="bus" route="calculatedRoute" depart="0" color="1,0,0"/>\n')
+    f.write('</routes>\n')
 
-# Print full route
-print("Complete Route:", " -> ".join(edge_ids))
+print(f"Route saved to {output_file}")
