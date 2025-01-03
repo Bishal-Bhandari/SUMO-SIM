@@ -11,7 +11,6 @@ route_edges = ["edge1", "edge2", "edge3", "edge4"]
 total_length = 0
 
 # details of the selected route
-# Process the route edges
 print("Route Details:")
 for edge_id in route_edges:
     edge = network.getEdge(edge_id)
@@ -19,7 +18,7 @@ for edge_id in route_edges:
     total_length += edge_length
     print(f"Edge: {edge_id}, Length: {edge_length:.2f} meters")
 
-# Print total route length
+# Print total length
 print(f"\nTotal Route Length: {total_length:.2f} meters")
 
 # Save route to file
