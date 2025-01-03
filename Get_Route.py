@@ -7,10 +7,10 @@ network = net.readNet(net_file)
 # the edges for route
 route_edges = ["edge1", "edge2", "edge3", "edge4"]
 
-# Initialize total length
+# Total length
 total_length = 0
 
-# details of the selected route
+# Details of the selected route
 print("Route Details:")
 for edge_id in route_edges:
     edge = network.getEdge(edge_id)
