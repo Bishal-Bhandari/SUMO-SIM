@@ -5,8 +5,8 @@ net_file = "bamberg.net.xml"
 network = net.readNet(net_file)
 
 # Start and end edges
-start_edge = "38033459"
-end_edge = "-199523015"
+start_edge = "x"
+end_edge = "y"
 
 # Find connected route
 try:
