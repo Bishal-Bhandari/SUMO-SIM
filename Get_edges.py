@@ -11,13 +11,34 @@ edges_from_file = [
     # Add all edges from your file here
 ]
 
-# Find connected route
-try:
-    route_edges, _ = network.getShortestPath(network.getEdge(start_edge), network.getEdge(end_edge))
-    edge_ids = [edge.getID() for edge in route_edges]
-    print("Complete Route:", " -> ".join(edge_ids))
-except Exception as e:
-    print(f"Error finding route: {e}")
-    exit()
 
+# Function to get the ordered list of edges
+def sort_edges_serially(edge_list, net):
+    sorted_edges = []
+    visited = set()
 
+    # Start with the first edge
+    current_edge_id = edge_list[0]
+    sorted_edges.append(current_edge_id)
+    visited.add(current_edge_id)
+
+    while len(sorted_edges) < len(edge_list):
+        current_edge = net.getEdge(current_edge_id)
+        next_edge = None
+
+        # Find the next edge connected to the current edge
+        for out_edge in current_edge.getOutgoing():
+            out_edge_id = out_edge.getID()
+            if out_edge_id in edge_list and out_edge_id not in visited:
+                next_edge = out_edge_id
+                break
+
+        if next_edge:
+            sorted_edges.append(next_edge)
+            visited.add(next_edge)
+            current_edge_id = next_edge
+        else:
+            print(f"Warning: Could not find a connection for edge {current_edge_id}")
+            break
+
+    return sorted_edges
