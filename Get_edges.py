@@ -49,3 +49,13 @@ sorted_edges = sort_edges_serially(edges_from_file, network)
 
 # Print the sorted edges
 print("Sorted Edges:", " -> ".join(sorted_edges))
+
+# Save the sorted edges to a .rou.xml file
+with open("sorted_gaustadt.rou.xml", "w") as f:
+    f.write('<routes>\n')
+    f.write('<vType id="bus" vClass="bus" accel="1.0" decel="4.0" length="12" maxSpeed="20" color="1,0,0"/>\n')
+    f.write(f'<route id="route1" edges="{" ".join(sorted_edges)}"/>\n')
+    f.write('<vehicle id="bus_1" type="bus" route="route1" depart="0"/>\n')
+    f.write('</routes>\n')
+
+print("Sorted route saved to sorted_gaustadt.rou.xml")
