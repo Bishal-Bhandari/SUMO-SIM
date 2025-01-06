@@ -42,3 +42,10 @@ def sort_edges_serially(edge_list, net):
             break
 
     return sorted_edges
+
+
+# Sort the edges
+sorted_edges = sort_edges_serially(edges_from_file, network)
+
+# Print the sorted edges
+print("Sorted Edges:", " -> ".join(sorted_edges))
