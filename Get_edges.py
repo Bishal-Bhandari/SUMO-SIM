@@ -8,6 +8,7 @@ network = net.readNet(net_file)
 with open("Gaustadt.txt", "r") as file:
     edges = [line.strip().replace("edge:", "") for line in file]
 
+
 # Function to sort edges serially
 def sort_edges_serially(edge_list, net):
     sorted_edges = []
@@ -38,6 +39,7 @@ def sort_edges_serially(edge_list, net):
             break
 
     return sorted_edges
+
 
 # Sort the edges
 sorted_edges = sort_edges_serially(edges, network)
