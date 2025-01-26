@@ -55,8 +55,8 @@ def xml_to_ods(xml_file, ods_file, root_tag, row_tags):
 
 
 # Convert each file
-xml_to_ods("emission.xml", "emission.ods", "vehicle", ["emissions"])
-xml_to_ods("fcd.xml", "fcd.ods", "timestep", ["vehicle"])
-xml_to_ods("tripinfo.xml", "tripinfo.ods", "tripinfo", ["emissions"])
+xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/emission.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/emission.ods", "vehicle", ["emissions"])
+xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/fcd.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/fcd.ods", "timestep", ["vehicle"])
+xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/tripinfo.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/tripinfo.ods", "tripinfo", ["emissions"])
 
 print("All files converted successfully!")
