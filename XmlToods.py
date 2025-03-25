@@ -2,15 +2,17 @@ import xml.etree.ElementTree as ET
 from odf.opendocument import OpenDocumentSpreadsheet
 from odf.table import Table, TableRow, TableCell
 from odf.text import P
-
+import time
 
 # Function to convert XML to ODS
-def xml_to_ods(xml_file, ods_file, root_tag, row_tags):
+def xml_to_ods(xml_file, ods_file_prefix, root_tag, row_tags):
     # Parse the XML file
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    # Create an ODS file
+    # Create an ODS file with a timestamp
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    ods_file = f"{ods_file_prefix}_{timestamp}.ods"
     ods = OpenDocumentSpreadsheet()
     table = Table(name="Data")
     ods.spreadsheet.addElement(table)
@@ -53,10 +55,8 @@ def xml_to_ods(xml_file, ods_file, root_tag, row_tags):
     ods.save(ods_file)
     print(f"Converted {xml_file} to {ods_file}")
 
-
 # Convert each file
-xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/emission.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/emission.ods", "vehicle", ["emissions"])
-xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/fcd.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/fcd.ods", "timestep", ["vehicle"])
-xml_to_ods("/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output/tripinfo.xml", "/media/bishal/DATA/SUMO/Gaustadt/Gaustadt_with_cars906-916/Output_ods/tripinfo.ods", "tripinfo", ["emissions"])
+xml_to_ods("Gaustadt_with_cars906-916/Output/fcd.xml", "Output_ods/fcd/fcd.ods", "timestep", ["vehicle"])
+xml_to_ods("Gaustadt_with_cars906-916/Output/tripinfo.xml", "Output_ods/tripinfo/tripinfo.ods", "tripinfo", ["emissions"])
 
 print("All files converted successfully!")
